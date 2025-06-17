@@ -1,0 +1,56 @@
+services:
+  db:
+    build:
+      context: .
+      args:
+        - "python"
+        - "api_calls.py"
+
+    image: postgres
+    environment:
+      POSTGRES_DB: hw07
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 5s
+      timeout: 2s
+      retries: 3
+
+  hw_app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+
+    environment:
+      BLOG_APP__DB__HOST: db
+      BLOG_APP__DB__PORT: 5432
+      BLOG_APP__DB__USER: app
+      BLOG_APP__DB__PASSWORD: password
+      BLOG_APP__DB__DATABASE: hw07
+
+#    command:
+#      - "python"
+#      - "main.py"
+    #      - "gunicorn"
+    #      - "main:app"
+    #      - "--workers"
+    #      - "1"
+    #      - "--worker-class"
+    #      - "uvicorn.workers.UvicornWorker"
+    #      - "--bind"
+    #      - "0.0.0.0:8000"
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  pgdata:
