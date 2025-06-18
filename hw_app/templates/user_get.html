@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <ul>
+        {% for user in response %}
+        <li><b>id</b>: {{ user.id }}</li>
+        <li><b>user name</b>: {{ user.username }}</li>
+        <li><b>name</b>: {{ user.name }}</li>
+        <li><b>email</b>: {{ user.email }}</li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endblock %}

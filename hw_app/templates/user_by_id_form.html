@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="/user/user-by-id" method="post">
+    <div class="mb-3">
+        <label for="exampleInputName" class="form-label">ID пользователя</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="user_id">
+    </div>
+    <button type="submit" class="btn btn-primary">Найти</button>
+
+</form>
+{% endblock %}

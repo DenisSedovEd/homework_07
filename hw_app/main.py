@@ -6,6 +6,10 @@ app = Flask(__name__)
 
 app.register_blueprint(users)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
 def main():
     app.run(debug=True)

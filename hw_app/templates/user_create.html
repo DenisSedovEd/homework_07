@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="/user/created" method="post">
+    <div class="mb-3">
+        <label for="exampleInputName" class="form-label">Имя пользователя</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Имя</label>
+        <input type="text" class="form-control" id="exampleInputPassword1" name="name">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Почта</label>
+        <input type="email" class="form-control" id="exampleInputPassword1" name="email">
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить</button>
+</form>
+{% endblock %}

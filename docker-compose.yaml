@@ -1,12 +1,6 @@
 services:
   db:
-    build:
-      context: .
-      args:
-        - "python"
-        - "api_calls.py"
-
-    image: postgres
+    image: postgres:17.5
     environment:
       POSTGRES_DB: hw07
       POSTGRES_USER: app
@@ -15,7 +9,8 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - "5436:5432"
+
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 5s
@@ -34,17 +29,17 @@ services:
       BLOG_APP__DB__PASSWORD: password
       BLOG_APP__DB__DATABASE: hw07
 
-#    command:
+    command:
 #      - "python"
 #      - "main.py"
-    #      - "gunicorn"
-    #      - "main:app"
-    #      - "--workers"
-    #      - "1"
-    #      - "--worker-class"
-    #      - "uvicorn.workers.UvicornWorker"
-    #      - "--bind"
-    #      - "0.0.0.0:8000"
+          - "gunicorn"
+          - "main:app"
+#          - "--workers"
+#          - "1"
+#          - "--worker-class"
+#          - "uvicorn.workers.UvicornWorker"
+          - "--bind"
+          - "0.0.0.0:8000"
 
     ports:
       - "8000:8000"
@@ -52,5 +47,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
 volumes:
   pgdata:

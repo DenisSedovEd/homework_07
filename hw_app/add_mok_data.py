@@ -1,5 +1,4 @@
-from typing import TYPE_CHECKING
-from jsonplaceholder_requests import *
+from typing import TYPE_CHECKING, Any
 from models import User, Post
 from models.db import Session
 import requests
@@ -22,7 +21,7 @@ def create_users(
     result = []
     for user in users:
         user_for_add = User(
-            id=user["id"],
+            # id=user["id"],
             username=user["username"],
             name=user["name"],
             email=user["email"],

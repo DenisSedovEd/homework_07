@@ -10,5 +10,7 @@ dependencies = [
     "gunicorn>=23.0.0",
     "psycopg[binary]>=3.2.9",
     "pydantic-settings>=2.9.1",
+    "requests>=2.32.4",
     "sqlalchemy>=2.0.41",
+    "unicorn>=2.1.3",
 ]

@@ -12,13 +12,13 @@ class DbConfig(BaseSettings):
     dialect: str = "postgresql"
     sync_engine: str = "psycopg"
     async_engine: str = "asyncpg"
-    mok_data_from_api = "https://jsonplaceholder.typicode.com/users"
-
     host: str
     port: str
     user: str
     password: str
     database: str
+
+    mok_data_from_api: str = "https://jsonplaceholder.typicode.com/users"
 
     def build_url(self, engine: str) -> str:
         return f"{self.dialect}+{engine}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}"
