@@ -21,7 +21,6 @@ def create_users(
     result = []
     for user in users:
         user_for_add = User(
-            # id=user["id"],
             username=user["username"],
             name=user["name"],
             email=user["email"],

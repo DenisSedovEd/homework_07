@@ -30,14 +30,8 @@ services:
       BLOG_APP__DB__DATABASE: hw07
 
     command:
-#      - "python"
-#      - "main.py"
           - "gunicorn"
           - "main:app"
-#          - "--workers"
-#          - "1"
-#          - "--worker-class"
-#          - "uvicorn.workers.UvicornWorker"
           - "--bind"
           - "0.0.0.0:8000"
 
